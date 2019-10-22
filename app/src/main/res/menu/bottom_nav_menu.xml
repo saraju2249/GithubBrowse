@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/repositoriesFragment"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Respositiries" />
+    <item
+        android:id="@+id/localRepositoriesFragment"
+        android:icon="@drawable/ic_cloud_black_24dp"
+        android:title="Local" />
+
+    <item
+        android:id="@+id/searchUserFragment"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search" />
+</menu>

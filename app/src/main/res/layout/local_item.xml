@@ -11,12 +11,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/lyt_parent"
         android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/lyt_parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clickable="true"
             android:minHeight="?attr/actionBarSize"
             android:orientation="horizontal">
 
@@ -26,46 +25,36 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_weight="9">
+                android:layout_weight="9"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:singleLine="true"
+                    android:id="@+id/name"
+                    tools:text="ffrfrgr"
+                    android:textSize="22sp"/>
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="14sp"
+                    android:textStyle="italic"
+                    tools:text="ffrfrgr" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#F0F0F0"
+                    android:paddingBottom="8dp" />
 
 
-                    <TextView
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="56dp"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:text="People Name"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-                    <ImageView
-                        android:id="@+id/icon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
-
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -81,15 +70,6 @@
             </ImageView>
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="12dp"
-            android:background="#EAEAEA"></View>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

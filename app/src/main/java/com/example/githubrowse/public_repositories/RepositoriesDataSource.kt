@@ -10,10 +10,6 @@ import retrofit2.Response
 class RepositoriesDataSource(val api :GithubBrowserService) : PageKeyedDataSource<Int, Repo>() {
 
     override fun loadInitial(params: PageKeyedDataSource.LoadInitialParams<Int>, callback: PageKeyedDataSource.LoadInitialCallback<Int, Repo>) {
-//        val api = Retrofit.Builder()
-//                .baseUrl("https://api.github.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build().create(GithubBrowserService::class.java)
 
         api.getRepo(FIRST_PAGE.toLong())
                 .enqueue(object : Callback<List<Repo>> {

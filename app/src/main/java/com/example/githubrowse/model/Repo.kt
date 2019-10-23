@@ -3,12 +3,13 @@ package com.example.githubrowse.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.example.githubrowse.persistance.ContributionsConverter
 import com.example.githubrowse.persistance.OwnerConverter
 import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "repo")
-@TypeConverters(OwnerConverter::class)
+@TypeConverters(OwnerConverter::class,ContributionsConverter::class)
 data class Repo (
 
 		@PrimaryKey
@@ -16,8 +17,6 @@ data class Repo (
 		 var node_id : String? ="",
 		 var name : String? ="",
 		 var full_name : String? ="",
-
-//        @TypeConverters(OwnerConverter::class)
     	 var owner : Owner? = null,
 		@SerializedName("private") var private : Boolean? = false,
 		@SerializedName("html_url") var html_url : String? ="",
@@ -60,7 +59,8 @@ data class Repo (
 		@SerializedName("subscription_url") var subscription_url : String? ="",
 		@SerializedName("tags_url") var tags_url : String?="",
 		@SerializedName("teams_url") var teams_url : String? ="",
-		@SerializedName("trees_url") var trees_url : String? =""
+		@SerializedName("trees_url") var trees_url : String? ="",
+		@SerializedName("contributors_data") var contributors : List<Owner>? =null
 
 
 )

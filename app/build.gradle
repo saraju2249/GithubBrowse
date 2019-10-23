@@ -5,11 +5,11 @@ apply plugin: 'kotlin-kapt'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.example.githubrowse"
         minSdkVersion 21
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -87,7 +87,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
     implementation 'androidx.room:room-runtime:2.1.0-alpha06'
     kapt 'androidx.room:room-compiler:2.1.0-alpha06'
-    kapt  "android.arch.persistence.room:compiler:1.1.1"
+    kapt "android.arch.persistence.room:compiler:1.1.1"
 
     implementation 'androidx.room:room-rxjava2:2.1.0-alpha06'
 
@@ -96,4 +96,6 @@ dependencies {
     implementation 'io.reactivex:rxjava:1.1.6'
     implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
     implementation 'com.jakewharton.rxbinding:rxbinding-design:0.4.0'
+
+    implementation 'com.mikhaellopez:circularimageview:4.0.2'
 }

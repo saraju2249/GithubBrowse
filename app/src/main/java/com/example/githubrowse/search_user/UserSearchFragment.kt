@@ -1,6 +1,7 @@
 package com.example.githubrowse.search_user
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,10 +13,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.githubrowse.GithubBrowserService
+import com.example.githubrowse.GithubClient
 import com.example.githubrowse.R
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.githubrowse.details.UserDetailsActivity
+import com.example.githubrowse.model.Owner
+import com.google.gson.Gson
 import com.jakewharton.rxbinding.widget.RxTextView
 import rx.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
@@ -42,15 +44,7 @@ class UserSearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        //adapter = RepositoriesAdapter(context!!)
-        // showLoadingIndicator(true)
-        // model.getTransactions(((NewTransactionsActivity)getActivity()).getUserName(),((NewTransactionsActivity)getActivity()).getKey(),progressBar,((NewTransactionsActivity)getActivity()).getServerIp(),getContext()).observe(this, new Observer<TransactionLog>() {
-
-        val api = Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build().create(GithubBrowserService::class.java)
-
+        val api = GithubClient().getService()
 
        val userViewModel= ViewModelProviders.of(this, UserViewModel.Factory(context!!,api)).get(UserViewModel::class.java)
 
@@ -66,7 +60,22 @@ class UserSearchFragment : Fragment() {
                 items->
 
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                recyclerView.adapter = UserSearchAdapter(items?.items,context)
+                val adapter =  UserSearchAdapter(items?.items!!, context!!)
+                recyclerView.adapter = adapter
+                adapter.setOnItemClickedListener(object:UserSearchAdapter.OnItemClickedListener
+                {
+                    override fun onClicked(repo: Owner?, pos: Int) {
+
+                        val intent = Intent(context, UserDetailsActivity::class.java);
+                        intent.putExtra("data", Gson().toJson(repo));
+                        intent.putExtra("isOffline", true);
+                        startActivity(intent);
+
+
+                                      }
+
+                })
+
             })
         })
 

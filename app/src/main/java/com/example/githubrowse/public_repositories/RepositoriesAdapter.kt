@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.githubrowse.R
 import com.example.githubrowse.model.Repo
-import kotlinx.android.synthetic.main.item_transaction.view.*
+import kotlinx.android.synthetic.main.item_repo.view.*
 
 
 class RepositoriesAdapter(private val mCtx: Context) : PagedListAdapter<Repo, RepositoriesAdapter.ItemViewHolder>(DIFF_CALLBACK) {
@@ -26,7 +26,7 @@ class RepositoriesAdapter(private val mCtx: Context) : PagedListAdapter<Repo, Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(mCtx).inflate(R.layout.item_transaction, parent, false)
+        val view = LayoutInflater.from(mCtx).inflate(R.layout.item_repo, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -34,7 +34,8 @@ class RepositoriesAdapter(private val mCtx: Context) : PagedListAdapter<Repo, Re
         val transaction = getItem(position)
 
 
-       holder.itemView.name.text =  transaction!!.name
+       holder.itemView.name.text =  transaction?.name
+       holder.itemView.desc.text = transaction?.description
        holder.itemView.lyt_parent.setOnClickListener { view ->
            onItemClickedListener.onClicked(view, transaction, position)
        }

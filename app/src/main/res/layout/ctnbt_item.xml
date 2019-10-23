@@ -12,7 +12,7 @@
     android:foreground="?android:attr/selectableItemBackground"
     android:focusable="true">
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:src="@drawable/ic_github"
         android:id="@+id/avatar"
         android:layout_width="50dp"

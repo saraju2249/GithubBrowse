@@ -2,10 +2,14 @@ package com.example.githubrowse.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.githubrowse.persistance.ContributionsConverter
+import com.example.githubrowse.persistance.OwnerConverter
 import com.google.gson.annotations.SerializedName
 
 
 @Entity(tableName = "owner")
+@TypeConverters(OwnerConverter::class)
 data class Owner (
 		@PrimaryKey
 		@SerializedName("login") var login : String,
@@ -25,5 +29,13 @@ data class Owner (
 		@SerializedName("events_url") var events_url : String,
 		@SerializedName("received_events_url") var received_events_url : String,
 		@SerializedName("type") var type : String,
-		@SerializedName("site_admin") var site_admin : Boolean
+		@SerializedName("site_admin") var site_admin : Boolean,
+		@SerializedName("contributions") val contributions : Int,
+        @SerializedName("score") val score : Double
+
+
+
+
 )
+
+

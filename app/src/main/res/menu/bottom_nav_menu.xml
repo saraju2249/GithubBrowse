@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/repositoriesFragment"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_github_repo"
         android:title="Respositiries" />
     <item
         android:id="@+id/localRepositoriesFragment"

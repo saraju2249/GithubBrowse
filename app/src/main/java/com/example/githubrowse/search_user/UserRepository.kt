@@ -9,27 +9,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class UserRepository (val api : GithubBrowserService){
-//    companion object {
-//        private var loginRepository: ContributionsRepository? = null
-//        private var context: Context?=null
-//        @Synchronized
-//        @JvmStatic
-//        fun getInstance(context: Context): ContributionsRepository {
-//            this.context=context
-//            if (loginRepository == null) loginRepository = ContributionsRepository()
-//            return loginRepository!!
-//        }
-//    }
+    companion object {
+        private var userRepository: UserRepository? = null
+        @Synchronized
+        @JvmStatic
+        fun getInstance( api : GithubBrowserService): UserRepository {
+            if (userRepository == null) userRepository = UserRepository(api)
+            return userRepository!!
+        }
+    }
 
     var loginData =  MutableLiveData<Users>()
 
 
     fun searchByQ(q: String) : MutableLiveData<Users>{
 
-//        val api = Retrofit.Builder()
-//                .baseUrl("https://api.github.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build().create(GithubBrowserService::class.java)
         api.getUsers(q)
                 .enqueue(object : Callback<Users> {
                     override fun onResponse(call: Call<Users>, response: Response<Users>) {

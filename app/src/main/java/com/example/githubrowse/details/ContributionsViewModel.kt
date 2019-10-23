@@ -7,13 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.githubrowse.GithubBrowserService
-import com.example.githubrowse.model.Contributions
+import com.example.githubrowse.model.Owner
 
 
 class ContributionsViewModel(val context: Context, val api: GithubBrowserService): ViewModel() {
 
-    fun getCtbn(own: String, name: String): LiveData<List<Contributions>> {
-        return ContributionsRepository(api).searchByQ(own, name)
+    fun getCtbn(own: String, name: String): LiveData<List<Owner>> {
+        return ContributionsRepository.getInstance(api).searchByQ(own, name)
     }
 
 

@@ -12,7 +12,7 @@ import com.example.githubrowse.model.Users
 class UserViewModel(val context: Context, val api: GithubBrowserService): ViewModel() {
 
     fun search(q: String): LiveData<Users> {
-        return UserRepository(api).searchByQ(q)
+        return UserRepository.getInstance(api).searchByQ(q)
     }
 
 

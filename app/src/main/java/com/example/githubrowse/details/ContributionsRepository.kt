@@ -3,36 +3,30 @@ package com.example.githubrowse.details
 
 import androidx.lifecycle.MutableLiveData
 import com.example.githubrowse.GithubBrowserService
-import com.example.githubrowse.model.Contributions
+import com.example.githubrowse.model.Owner
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class ContributionsRepository (val api : GithubBrowserService){
-//    companion object {
-//        private var loginRepository: ContributionsRepository? = null
-//        private var context: Context?=null
-//        @Synchronized
-//        @JvmStatic
-//        fun getInstance(context: Context): ContributionsRepository {
-//            this.context=context
-//            if (loginRepository == null) loginRepository = ContributionsRepository()
-//            return loginRepository!!
-//        }
-//    }
+    companion object {
+        private var contributionsRepository: ContributionsRepository? = null
+        @Synchronized
+        @JvmStatic
+        fun getInstance(api : GithubBrowserService): ContributionsRepository {
+            if (contributionsRepository == null) contributionsRepository = ContributionsRepository(api)
+            return contributionsRepository!!
+        }
+    }
 
-    var loginData =  MutableLiveData<List<Contributions>>()
+    var loginData =  MutableLiveData<List<Owner>>()
 
 
-    fun searchByQ(own: String, name:String) : MutableLiveData<List<Contributions>>{
+    fun searchByQ(own: String, name:String) : MutableLiveData<List<Owner>>{
 
-//        val api = Retrofit.Builder()
-//                .baseUrl("https://api.github.com/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build().create(GithubBrowserService::class.java)
         api.getContributions(own,name)
-                .enqueue(object : Callback<List<Contributions>> {
-                    override fun onResponse(call: Call<List<Contributions>>, response: Response<List<Contributions>>) {
+                .enqueue(object : Callback<List<Owner>> {
+                    override fun onResponse(call: Call<List<Owner>>, response: Response<List<Owner>>) {
 
                         response.body()?.let {
                             loginData.value = it
@@ -41,7 +35,7 @@ class ContributionsRepository (val api : GithubBrowserService){
 
                     }
 
-                    override fun onFailure(call: Call<List<Contributions>>, t: Throwable) {
+                    override fun onFailure(call: Call<List<Owner>>, t: Throwable) {
 
                     }
                 })
